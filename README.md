@@ -2,7 +2,14 @@ This project, developed by Snowi, will be submitted to our instructor, Sir Karl 
 
 ## Getting Started
 
-First, run the development server:
+First, install the package
+
+```bash
+npm install init
+
+```
+
+Second, to run the project do the following commands:
 
 ```bash
 npm run dev
