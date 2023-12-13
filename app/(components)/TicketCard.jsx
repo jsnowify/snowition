@@ -1,3 +1,4 @@
+import Link from "next/link";
 import DeleteBlock from "./DeleteBlock";
 import PriorityDisplay from "./PriorityDisplay";
 import ProgressDisplay from "./ProgressDisplay";
@@ -27,19 +28,21 @@ function TicketCard({ task }) {
           <DeleteBlock id={task._id} />
         </div>
       </div>
-      <h4>{task.title}</h4>
-      <hr className="h-px border-0 bg-page mb-2" />
-      <p className="whitespace-pre-wrap">{task.description}</p>
-      <div className="flex-grow "></div>
-      <div className="flex mt-2 ">
-        <div className="flex flex-col ">
-          <p className="text-xs my-1">{formatTimeStamp(task.createdAt)}</p>
-          <ProgressDisplay progress={task.progress} />
+      <Link href={`/TicketPage/${task._id}`} style={{ display: "contents" }}>
+        <h4>{task.title}</h4>
+        <hr className="h-px border-0 bg-page mb-2" />
+        <p className="whitespace-pre-wrap">{task.description}</p>
+        <div className="flex-grow "></div>
+        <div className="flex mt-2 ">
+          <div className="flex flex-col ">
+            <p className="text-xs my-1">{formatTimeStamp(task.createdAt)}</p>
+            <ProgressDisplay progress={task.progress} />
+          </div>
+          <div className="ml-auto flex items-end">
+            <StatusDisplay status={task.status} />
+          </div>
         </div>
-        <div className="ml-auto flex items-end">
-          <StatusDisplay status={task.status} />
-        </div>
-      </div>
+      </Link>
     </div>
   );
 }
