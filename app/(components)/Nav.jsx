@@ -14,7 +14,7 @@ function Nav() {
         </Link>
       </div>
       <div>
-        <p className="text-default-text">snowi@gmail.com</p>
+        <p className="text-default-text">Snowition</p>
       </div>
     </nav>
   );

@@ -5,7 +5,7 @@ This project, developed by Snowi, will be submitted to our instructor, Sir Karl 
 First, install the package
 
 ```bash
-npm init
+npm install
 
 ```
 

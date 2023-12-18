@@ -1,7 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import useSWR from "swr";
 
 function TicketForm({ task }) {
   const EDITMODE = task._id === "new" ? false : true;
@@ -59,7 +60,7 @@ function TicketForm({ task }) {
       router.push("/");
     } catch (error) {
       console.error("An error occurred:", error.message);
-      // Handle the error as needed, e.g., show a user-friendly message
+      // Handle the error as needed
     }
   };
 
@@ -82,7 +83,21 @@ function TicketForm({ task }) {
   }
 
   const [formData, setFormData] = useState(startingTaskData);
+  const swrKey = task._id ? `/api/Task/${task._id}` : null;
 
+  const { data: updatedTask, error } = useSWR(swrKey, async (url) => {
+    const res = await fetch(url);
+    if (!res.ok) {
+      throw new Error("Failed to fetch data");
+    }
+    return res.json();
+  });
+
+  useEffect(() => {
+    if (updatedTask) {
+      setFormData(updatedTask);
+    }
+  }, [updatedTask]);
   return (
     <div className="flex justify-center">
       <form
