@@ -6,6 +6,7 @@ First, install the package
 
 ```bash
 npm install
+npm install mongodb mongoose
 
 ```
 
